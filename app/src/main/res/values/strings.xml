@@ -7,4 +7,13 @@
     <string name="email_password">Введите пароль</string>
     <string name="entrance">Вход</string>
     <string name="load">Загрузить фото</string>
+    <string name="skip_turn">Пропуск хода</string>
+    <string name="nickname_enemy">Вражеское имя</string>
+    <string-array name="act">
+        <item>Лечиться</item>
+        <item>Ув. шанс защиты</item>
+        <item>Сбежать</item>
+    </string-array>
+    <string name="attack">Атака</string>
+    <string name="percent">1</string>
 </resources>
