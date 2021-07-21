@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SecondFragment"
+    android:orientation="vertical"
+    android:weightSum="1.55">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- FrameLayout -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment 2" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.45">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/state"
+            android:text="@string/state"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="17dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_money"
+                android:text="@string/text_money"
+                android:textColor="@color/money"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/money"
+                android:text="@string/money"
+                android:shadowColor="#7F000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"
+                android:textColor="@color/money"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="6dp"
+            android:text="@string/name"
+            android:textSize="40dp"
+            android:id="@+id/nickname_in_start"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
-</FrameLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/room_one_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            android:backgroundTintMode="src_over"
+            android:src="@mipmap/button_start"
+            android:tint="@color/black"
+            app:borderWidth="0dp"
+            app:fabCustomSize="80dp"
+            app:maxImageSize="60dp"
+            android:layout_weight="1.1"/>
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/space"-->
+<!--            android:text="@string/space"-->
+<!--            android:layout_weight="1"/>-->
+
+
+</LinearLayout>

@@ -16,4 +16,13 @@
     </string-array>
     <string name="attack">Атака</string>
     <string name="percent">1</string>
+    <string name="accept">Подтвердить</string>
+    <string name="state">Поиск игры...</string>
+    <string name="money">0.0</string>
+    <string name="text_money">Монеты</string>
+    <string name="name">Имя</string>
+    <string name="space"> </string>
+    <string name="zero">0</string>
+    <string name="backslash">/</string>
+    <string name="maximum">550</string>
 </resources>
