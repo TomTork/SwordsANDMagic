@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "642803824560",
+    "firebase_url": "https://swordsandmagic-69680-default-rtdb.firebaseio.com",
+    "project_id": "swordsandmagic-69680",
+    "storage_bucket": "swordsandmagic-69680.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642803824560:android:14069b3ac57faf4ffe4875",
+        "android_client_info": {
+          "package_name": "com.anotherworld.swordsandmagic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642803824560-jg8bcq6a4hhip4f167so692qir00pv1v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anotherworld.swordsandmagic",
+            "certificate_hash": "6501253e0a077b83d59b535d089e128e9a212681"
+          }
+        },
+        {
+          "client_id": "642803824560-lqmcs0e2c9lkqer3qegs3ccid7vn9gim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeZ2ZapJcwl4OPk-l9W4qZJJyHB7DCQvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642803824560-lqmcs0e2c9lkqer3qegs3ccid7vn9gim.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
