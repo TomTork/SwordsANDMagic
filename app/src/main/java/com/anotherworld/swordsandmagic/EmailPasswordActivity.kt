@@ -1,8 +1,10 @@
 package com.anotherworld.swordsandmagic
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -22,37 +24,22 @@ class EmailPasswordActivity : AppCompatActivity() {
     private lateinit var entrance: Button
     val createFiles: CreateFiles = CreateFiles()
     val getterANDSetter: GetterANDSetter = GetterANDSetter()
-    //var bitmap: Bitmap = null
+    val REQUEST_CODE = 100
+    var bitmap : Bitmap? = null
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, imageReturnedIntent: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-//        when (requestCode) {
-//            GALLERY_REQUEST -> {
-//
-//            }
-//
-//        }
-//        switch(requestCode) {
-//            case GALLERY_REQUEST :
-//            if (resultCode == RESULT_OK) {
-//                Uri selectedImage = imageReturnedIntent . getData ();
-//                try {
-//                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                avatar.setImageBitmap(bitmap);
-//            }
-//        }
-//    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+            avatar.setImageURI(data?.data) // handle chosen image
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_email_password)
-//        load.setOnClickListener{
-//            val photoPickerIntent = Intent(Intent.ACTION_PICK)
-//            photoPickerIntent.type = "image/*"
-//            startActivityForResult(photoPickerIntent, GALLERY_REQUEST)
-//        }
+        load.setOnClickListener{
+            openGalleryForImage()
+        }
 
         auth = Firebase.auth
         entrance.setOnClickListener{
@@ -85,6 +72,12 @@ class EmailPasswordActivity : AppCompatActivity() {
     }
     private fun updateUI(currentUser: FirebaseUser?) {
 
+    }
+    private fun openGalleryForImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+        bitmap = (avatar.drawable as BitmapDrawable).bitmap
     }
 
 }
