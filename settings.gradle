@@ -1,0 +1,2 @@
+rootProject.name = "SwordsANDMagic"
+include ':app'
