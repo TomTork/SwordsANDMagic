@@ -31,6 +31,20 @@ class FirstFragment : Fragment(), View.OnClickListener {
     lateinit var v : View
     lateinit var change: Button
     lateinit var accept: Button
+    lateinit var ultimate1: Button
+    lateinit var ultimate2: Button
+    lateinit var ultimate3: Button
+    lateinit var ultimate4: Button
+    lateinit var ultimate5: Button
+    lateinit var common1: Button
+    lateinit var common2: Button
+    lateinit var common3: Button
+    lateinit var common4: Button
+    lateinit var common5: Button
+    lateinit var common6: Button
+    lateinit var common7: Button
+    lateinit var active_common: Button
+    lateinit var active_ultimate: Button
     lateinit var input_nickname: EditText
     lateinit var avatar_in_settings: ImageView
     val getterANDSetter: GetterANDSetter = GetterANDSetter()
@@ -49,18 +63,31 @@ class FirstFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+        try {
+            Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
-    }
+        try {
+            Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }    }
 
     override fun onResume() {
         super.onResume()
-        Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
-    }
+        try {
+            Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,35 +96,32 @@ class FirstFragment : Fragment(), View.OnClickListener {
         v =  inflater.inflate(R.layout.fragment_first, container, false)
         change = v.findViewById(R.id.change_avatar)
         accept = v.findViewById(R.id.accept)
+        active_common = v.findViewById(R.id.active_common)
+        active_ultimate = v.findViewById(R.id.active_ultimate)
+        common1 = v.findViewById(R.id.common1)
+        common2 = v.findViewById(R.id.common2)
+        common3 = v.findViewById(R.id.common3)
+        common4 = v.findViewById(R.id.common4)
+        common5 = v.findViewById(R.id.common5)
+        common6 = v.findViewById(R.id.common6)
+        common7 = v.findViewById(R.id.common7)
+        ultimate1 = v.findViewById(R.id.ultimate1)
+        ultimate2 = v.findViewById(R.id.ultimate2)
+        ultimate3 = v.findViewById(R.id.ultimate3)
+        ultimate4 = v.findViewById(R.id.ultimate4)
+        ultimate5 = v.findViewById(R.id.ultimate5)
         input_nickname = v.findViewById(R.id.input_nickname)
         avatar_in_settings = v.findViewById(R.id.avatar_in_settings)
         change.setOnClickListener(this)
         accept.setOnClickListener(this)
-        if (getterANDSetter.getSign()==1) {
+        try {
+            if (getterANDSetter.getSign()==1) {
                 //Glide.with(this).load(getterANDSetter.getImage()).into(avatar_in_settings)
-            Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+                Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
-
-//        count = object : CountDownTimer((sec * 1000).toLong(), 1000) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                sec--
-//                if (getterANDSetter.getSign()==1) {
-//                    //Glide.with(this).load(getterANDSetter.getImage()).into(avatar_in_settings)
-//                    Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
-//                }
-//            }
-//
-//            override fun onFinish() {
-//                if (count != null) {
-//                    sec = 1
-//                    count!!.start()
-//                }
-//            }
-//        }
-//        if (count != null) {
-//            sec = 1
-//            count!!.start()
-//        }
         return v;
     }
 
@@ -126,12 +150,55 @@ class FirstFragment : Fragment(), View.OnClickListener {
             R.id.change_avatar -> {
                 getterANDSetter.setGallery(1)
             }
+            R.id.ultimate1 ->{
+                getterANDSetter.setUltimate(1)
+            }
+            R.id.ultimate2 ->{
+                getterANDSetter.setUltimate(2)
+            }
+            R.id.ultimate3 ->{
+                getterANDSetter.setUltimate(3)
+            }
+            R.id.ultimate4 ->{
+                getterANDSetter.setUltimate(4)
+            }
+            R.id.ultimate5 ->{
+                getterANDSetter.setUltimate(5)
+            }
+            R.id.common1 ->{
+                getterANDSetter.setCommon(1)
+            }
+            R.id.common2 ->{
+                getterANDSetter.setCommon(2)
+            }
+            R.id.common3 ->{
+                getterANDSetter.setCommon(3)
+            }
+            R.id.common4 ->{
+                getterANDSetter.setCommon(4)
+            }
+            R.id.common5 ->{
+                getterANDSetter.setCommon(5)
+            }
+            R.id.common6 ->{
+                getterANDSetter.setCommon(6)
+            }
+            R.id.common7 ->{
+                getterANDSetter.setCommon(7)
+            }
+            R.id.active_common ->{
+                getterANDSetter.setCommon(0)
+            }
+            R.id.active_ultimate ->{
+                getterANDSetter.setUltimate(0)
+            }
             R.id.accept -> {
                 if (input_nickname.text.toString().isNotEmpty() && !input_nickname.text.toString().contains(";") && !input_nickname.text.toString().contains(" ")){
                     getterANDSetter.setName(input_nickname.text.toString())
                     input_nickname.text = null
                 }
             }
+
         }
     }
 }

@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var filePath: Uri? = null
     private val PICK_IMAGE_REQUEST = 71
     var count: CountDownTimer? = null
+    val my: MyPagerAdapter = MyPagerAdapter(supportFragmentManager)
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
     override fun onStart() {
         super.onStart()
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         viewpager.adapter = fragmentAdapter
         tabs.setupWithViewPager(viewpager)
         timer()
+
     }
 
 
@@ -71,9 +73,11 @@ class MainActivity : AppCompatActivity() {
                         getterANDSetter.setGallery(0)
                         startActivity(Intent(this@MainActivity,Preview::class.java))
                     }
-
+                    if (getterANDSetter.getChat()==1){
+                        getterANDSetter.setChat(0)
+                        startActivity(Intent(this@MainActivity,Chat::class.java))
+                    }
                 }
-
                 override fun onFinish() {
                     if (count != null) {
                         sec = 1

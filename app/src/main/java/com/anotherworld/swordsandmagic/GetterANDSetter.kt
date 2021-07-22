@@ -12,6 +12,30 @@ class GetterANDSetter {
     val file_temp = File("data/data/" + s_package + "temp.txt")
     val file_image = File("data/data/" + s_package + "image.txt")
     val file_gallery = File("data/data/" + s_package + "gallery.txt")
+    val file_chat = File("data/data/" + s_package + "chat.txt")
+    val file_common = File("data/data/" + s_package + "common.txt")
+    val file_ultimate = File("data/data/" + s_package + "ultimate.txt")
+    fun setUltimate(i:Int){
+        file_ultimate.writeText(i.toString())
+    }
+    fun getUltimate():Int{
+        val read9 =  FileInputStream(file_ultimate).bufferedReader().use { it.readText() }
+        return read9.toInt()
+    }
+    fun setCommon(i:Int){
+        file_common.writeText(i.toString())
+    }
+    fun getCommon() : Int{
+        val read9 = FileInputStream(file_common).bufferedReader().use { it.readText() }
+        return read9.toInt()
+    }
+    fun setChat(i:Int){
+        file_chat.writeText(i.toString())
+    }
+    fun getChat() : Int{
+        val read8 = FileInputStream(file_chat).bufferedReader().use { it.readText() }
+        return read8.toInt()
+    }
     fun setGallery(i:Int){
         file_gallery.writeText(i.toString())
     }

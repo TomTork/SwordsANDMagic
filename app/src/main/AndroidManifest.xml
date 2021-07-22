@@ -17,8 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SwordsANDMagic">
-        <activity android:name=".Preview"
+        <activity android:name=".Chat"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Preview"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Game"
             android:screenOrientation="landscape" />

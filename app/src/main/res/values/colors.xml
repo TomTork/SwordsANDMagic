@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="money">#FF9962</color>
+    <color name="user">#50c878</color>
+    <color name="user2">#a0c850</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="ultimate">#ff2052</color>
+    <color name="common">#7fffd4</color>
+    <color name="gold">#e9d66b</color>
 </resources>

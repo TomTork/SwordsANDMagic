@@ -1,15 +1,21 @@
 package com.anotherworld.swordsandmagic
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.fragment.app.Fragment
+import com.firebase.ui.database.FirebaseListAdapter
+import com.github.library.bubbleview.BubbleTextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,15 +27,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ThirdFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ThirdFragment : Fragment(), View.OnClickListener {
+class ThirdFragment : Fragment(),View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     lateinit var v : View
-    lateinit var number_of_words_entered: TextView
-    lateinit var input: EditText
-    lateinit var send: AppCompatImageButton
-    lateinit var listView: ListView
+    lateinit var startChat: Button
+    val getterANDSetter: GetterANDSetter = GetterANDSetter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,30 +43,14 @@ class ThirdFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_third, container, false)
-        send = v.findViewById(R.id.send)
-        number_of_words_entered = v.findViewById(R.id.number_of_words_entered)
-        input = v.findViewById(R.id.input)
-        listView = v.findViewById(R.id.listView)
-        send.setOnClickListener(this)
+        startChat = v.findViewById(R.id.startChat)
+        startChat.setOnClickListener(this)
         return v
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ThirdFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             ThirdFragment().apply {
@@ -74,6 +62,6 @@ class ThirdFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        Log.d("QQQQQ","SEND")
+        getterANDSetter.setChat(1)
     }
 }
