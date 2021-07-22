@@ -49,14 +49,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        val viewpager: ViewPager = findViewById(R.id.viewpager)
-        val fragmentAdapter = MyPagerAdapter(supportFragmentManager)
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        storageReference = storage.reference;
-        viewpager.adapter = fragmentAdapter
-        tabs.setupWithViewPager(viewpager)
+        lifecycleScope.launch {
+            val viewpager: ViewPager = findViewById(R.id.viewpager)
+            val fragmentAdapter = MyPagerAdapter(supportFragmentManager)
+            val tabs: TabLayout = findViewById(R.id.tabs)
+            storageReference = storage.reference;
+            viewpager.adapter = fragmentAdapter
+            tabs.setupWithViewPager(viewpager)
+        }
         timer()
-
     }
 
 

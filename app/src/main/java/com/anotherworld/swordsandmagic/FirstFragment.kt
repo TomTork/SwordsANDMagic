@@ -6,9 +6,7 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
@@ -31,20 +29,21 @@ class FirstFragment : Fragment(), View.OnClickListener {
     lateinit var v : View
     lateinit var change: Button
     lateinit var accept: Button
-    lateinit var ultimate1: Button
-    lateinit var ultimate2: Button
-    lateinit var ultimate3: Button
-    lateinit var ultimate4: Button
-    lateinit var ultimate5: Button
-    lateinit var common1: Button
-    lateinit var common2: Button
-    lateinit var common3: Button
-    lateinit var common4: Button
-    lateinit var common5: Button
-    lateinit var common6: Button
-    lateinit var common7: Button
-    lateinit var active_common: Button
-    lateinit var active_ultimate: Button
+    lateinit var ultimate1: ImageButton
+    lateinit var ultimate2: ImageButton
+    lateinit var ultimate3: ImageButton
+    lateinit var ultimate4: ImageButton
+    lateinit var ultimate5: ImageButton
+    lateinit var common1: ImageButton
+    lateinit var common2: ImageButton
+    lateinit var common3: ImageButton
+    lateinit var common4: ImageButton
+    lateinit var common5: ImageButton
+    lateinit var common6: ImageButton
+    lateinit var common7: ImageButton
+
+    lateinit var active_common: ImageButton
+    lateinit var active_ultimate: ImageButton
     lateinit var input_nickname: EditText
     lateinit var avatar_in_settings: ImageView
     val getterANDSetter: GetterANDSetter = GetterANDSetter()
@@ -122,7 +121,35 @@ class FirstFragment : Fragment(), View.OnClickListener {
         }catch (e:Exception){
             e.printStackTrace()
         }
+        try {
+            Thread.sleep(350)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+        loadCommon()
+        loadUltimate()
         return v;
+    }
+    fun loadCommon(){
+        when(getterANDSetter.getCommon()){
+            1 -> active_common.setImageResource(R.mipmap.sword)
+            2 -> active_common.setImageResource(R.mipmap.anchor)
+            3 -> active_common.setImageResource(R.mipmap.helmet)
+            4 -> active_common.setImageResource(R.mipmap.page)
+            5 -> active_common.setImageResource(R.mipmap.count)
+            6 -> active_common.setImageResource(R.mipmap.heal)
+            else -> active_common.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_24)
+        }
+    }
+    fun loadUltimate(){
+        when(getterANDSetter.getUltimate()){
+            1 -> active_ultimate.setImageResource(R.mipmap.vampirism)
+            2 -> active_ultimate.setImageResource(R.mipmap.fullheal)
+            3 -> active_ultimate.setImageResource(R.mipmap.totem)
+            4 -> active_ultimate.setImageResource(R.mipmap.book)
+            5 -> active_ultimate.setImageResource(R.mipmap.molot)
+            else -> active_ultimate.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_24)
+        }
     }
 
     companion object {
@@ -145,6 +172,18 @@ class FirstFragment : Fragment(), View.OnClickListener {
             }
     }
 
+    //common1 - sword
+    //common2 - anchor
+    //common3 - helmet
+    //common4 - page
+    //common5 - count
+    //common6 - heal
+    //common7 - trap
+    //ultimate1 - vampirism
+    //ultimate2 - fullheal
+    //ultimate3 - totem
+    //ultimate4 - book
+    //ultimate5 - molot
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.change_avatar -> {
@@ -152,45 +191,91 @@ class FirstFragment : Fragment(), View.OnClickListener {
             }
             R.id.ultimate1 ->{
                 getterANDSetter.setUltimate(1)
+                active_ultimate.setImageResource(R.mipmap.vampirism)
             }
             R.id.ultimate2 ->{
                 getterANDSetter.setUltimate(2)
+                active_ultimate.setImageResource(R.mipmap.fullheal)
             }
             R.id.ultimate3 ->{
-                getterANDSetter.setUltimate(3)
+                if (getterANDSetter.getMoney()>=30.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-30.0)
+                    getterANDSetter.setUltimate(3)
+                    active_ultimate.setImageResource(R.mipmap.totem)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.ultimate4 ->{
-                getterANDSetter.setUltimate(4)
+                if (getterANDSetter.getMoney()>=50.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-50.0)
+                    getterANDSetter.setUltimate(4)
+                    active_ultimate.setImageResource(R.mipmap.book)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.ultimate5 ->{
-                getterANDSetter.setUltimate(5)
+                if (getterANDSetter.getMoney()>=100.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-100.0)
+                    getterANDSetter.setUltimate(5)
+                    active_ultimate.setImageResource(R.mipmap.molot)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.common1 ->{
                 getterANDSetter.setCommon(1)
+                active_common.setImageResource(R.mipmap.sword)
             }
             R.id.common2 ->{
                 getterANDSetter.setCommon(2)
+                active_common.setImageResource(R.mipmap.anchor)
             }
             R.id.common3 ->{
-                getterANDSetter.setCommon(3)
+                if (getterANDSetter.getMoney()>=30.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-30.0)
+                    getterANDSetter.setCommon(3)
+                    active_common.setImageResource(R.mipmap.helmet)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.common4 ->{
-                getterANDSetter.setCommon(4)
+                if (getterANDSetter.getMoney()>=50.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-50.0)
+                    getterANDSetter.setCommon(4)
+                    active_common.setImageResource(R.mipmap.page)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.common5 ->{
-                getterANDSetter.setCommon(5)
+                if (getterANDSetter.getMoney()>=100.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-100.0)
+                    getterANDSetter.setCommon(5)
+                    active_common.setImageResource(R.mipmap.count)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.common6 ->{
-                getterANDSetter.setCommon(6)
+                if (getterANDSetter.getMoney()>=120.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-120.0)
+                    getterANDSetter.setCommon(6)
+                    active_common.setImageResource(R.mipmap.heal)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.common7 ->{
-                getterANDSetter.setCommon(7)
+                if (getterANDSetter.getMoney()>=150.0){
+                    getterANDSetter.setMoney(getterANDSetter.getMoney()-150.0)
+                    getterANDSetter.setCommon(7)
+                    active_common.setImageResource(R.mipmap.trap)
+                }
+                else Toast.makeText(context,"Недостаточно средств",Toast.LENGTH_SHORT).show()
             }
             R.id.active_common ->{
                 getterANDSetter.setCommon(0)
+                active_common.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_24)
             }
             R.id.active_ultimate ->{
                 getterANDSetter.setUltimate(0)
+                active_ultimate.setImageResource(R.drawable.ic_baseline_check_box_outline_blank_24)
             }
             R.id.accept -> {
                 if (input_nickname.text.toString().isNotEmpty() && !input_nickname.text.toString().contains(";") && !input_nickname.text.toString().contains(" ")){

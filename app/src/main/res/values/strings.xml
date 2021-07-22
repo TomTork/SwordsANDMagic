@@ -26,9 +26,9 @@
     <string name="backslash">/</string>
     <string name="maximum">550</string>
     <string name="startChat">Войти в чат</string>
-    <string name="hundred_3">300</string>
-    <string name="hundred_5">500</string>
-    <string name="hundred_10">1000</string>
-    <string name="hundred_12">1200</string>
-    <string name="hundred_15">1500</string>
+    <string name="hundred_3">30</string>
+    <string name="hundred_5">50</string>
+    <string name="hundred_10">100</string>
+    <string name="hundred_12">120</string>
+    <string name="hundred_15">150</string>
 </resources>
