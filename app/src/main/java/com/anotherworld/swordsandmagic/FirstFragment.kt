@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_first.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +27,7 @@ class FirstFragment : Fragment(), View.OnClickListener {
     lateinit var v : View
     lateinit var change: Button
     lateinit var accept: Button
+    lateinit var input_nickname: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class FirstFragment : Fragment(), View.OnClickListener {
         v =  inflater.inflate(R.layout.fragment_first, container, false)
         change = v.findViewById(R.id.change_avatar)
         accept = v.findViewById(R.id.accept)
+        input_nickname = v.findViewById(R.id.input_nickname)
         change.setOnClickListener(this)
         accept.setOnClickListener(this)
         return v;

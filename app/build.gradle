@@ -64,4 +64,5 @@ dependencies {
 
     implementation 'com.github.lguipeng:BubbleView:1.0.1'
     implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
 }

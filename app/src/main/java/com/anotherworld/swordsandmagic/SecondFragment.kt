@@ -1,10 +1,16 @@
 package com.anotherworld.swordsandmagic
 
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,10 +22,18 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SecondFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SecondFragment : Fragment() {
+class SecondFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var v : View
+    lateinit var start: FloatingActionButton
+    lateinit var state: TextView
+    lateinit var money: TextView
+    lateinit var nickname_in_start: TextView
+    var second: Int = 60
+    var countD: CountDownTimer? = null
+    val getterANDSetter: GetterANDSetter = GetterANDSetter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +48,16 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false)
+        v = inflater.inflate(R.layout.fragment_second, container, false)
+        start = v.findViewById(R.id.room_one_button)
+        state = v.findViewById(R.id.state)
+        money = v.findViewById(R.id.money)
+        nickname_in_start = v.findViewById(R.id.nickname_in_start)
+        start.setOnClickListener(this)
+        money.text = getterANDSetter.getMoney().toString()
+        nickname_in_start.text = getterANDSetter.getName()
+        money_timer()
+        return v
     }
 
     companion object {
@@ -55,5 +78,32 @@ class SecondFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onClick(v: View?) {
+        getterANDSetter.setTemp(1)
+    }
+    fun money_timer(){
+        lifecycleScope.launch {
+            countD = object : CountDownTimer((second * 1000).toLong(), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    second--
+                    nickname_in_start.text = getterANDSetter.getName()
+                }
+
+                override fun onFinish() {
+                    getterANDSetter.setMoney((getterANDSetter.getMoney()+1.0))
+                    money.text = getterANDSetter.getMoney().toString()
+                    if (countD != null) {
+                        second = 1
+                        countD!!.start()
+                    }
+                }
+            }
+            if (countD != null) {
+                second = 1
+                countD!!.start()
+            }
+        }
     }
 }

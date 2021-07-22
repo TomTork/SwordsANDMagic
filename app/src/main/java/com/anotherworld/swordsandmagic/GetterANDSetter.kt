@@ -9,6 +9,14 @@ class GetterANDSetter {
     val file_money = File("data/data/" + s_package + "money.txt")
     val file_name = File("data/data/" + s_package + "nickname.txt")
     val file_sign = File("data/data/" + s_package + "sign.txt")
+    val file_temp = File("data/data/" + s_package + "temp.txt")
+    fun getTemp() : Int{
+        val read5 = FileInputStream(file_temp).bufferedReader().use { it.readText() }
+        return read5.toInt()
+    }
+    fun setTemp(i: Int){
+        file_temp.writeText(i.toString())
+    }
     fun getSign() : Int{
         val read4 = FileInputStream(file_sign).bufferedReader().use { it.readText() }
         return read4.toInt()

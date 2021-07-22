@@ -76,8 +76,8 @@ class EmailPasswordActivity : AppCompatActivity() {
             //openGalleryForImage()
             chooseImage()
         }
-        number = getterANDSetter.getSign()
         createFiles.create()
+        number = getterANDSetter.getSign()
         mAuthListener = AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
             if (user != null) {
