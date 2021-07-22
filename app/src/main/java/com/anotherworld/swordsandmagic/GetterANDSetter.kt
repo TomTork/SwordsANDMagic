@@ -14,27 +14,27 @@ class GetterANDSetter {
         return read4.toInt()
     }
     fun setSign(i: Int){
-        file_sign.appendText(i.toString())
+        file_sign.writeText(i.toString())
     }
     fun getName() : String{
         val read3 = FileInputStream(file_name).bufferedReader().use { it.readText() }
         return read3
     }
     fun setName(s: String){
-        file_name.appendText(s)
+        file_name.writeText(s)
     }
     fun getMoney() : Double{
         val read2 = FileInputStream(file_money).bufferedReader().use { it.readText() }
         return read2.toDouble()
     }
     fun setMoney(d: Double){
-        file_money.appendText(d.toString())
+        file_money.writeText(d.toString())
     }
     fun getLoad() : String{
         val read1 = FileInputStream(file1).bufferedReader().use { it.readText() }
         return read1
     }
     fun setLoad(s: String){
-        file1.appendText(s)
+        file1.writeText(s)
     }
 }
