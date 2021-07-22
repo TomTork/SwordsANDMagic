@@ -10,6 +10,22 @@ class GetterANDSetter {
     val file_name = File("data/data/" + s_package + "nickname.txt")
     val file_sign = File("data/data/" + s_package + "sign.txt")
     val file_temp = File("data/data/" + s_package + "temp.txt")
+    val file_image = File("data/data/" + s_package + "image.txt")
+    val file_gallery = File("data/data/" + s_package + "gallery.txt")
+    fun setGallery(i:Int){
+        file_gallery.writeText(i.toString())
+    }
+    fun getGallery() : Int{
+        val read7 = FileInputStream(file_gallery).bufferedReader().use { it.readText() }
+        return read7.toInt()
+    }
+    fun setImage(s:String){
+        file_image.writeText(s)
+    }
+    fun getImage() : String{
+        val read6 = FileInputStream(file_image).bufferedReader().use { it.readText() }
+        return read6
+    }
     fun getTemp() : Int{
         val read5 = FileInputStream(file_temp).bufferedReader().use { it.readText() }
         return read5.toInt()

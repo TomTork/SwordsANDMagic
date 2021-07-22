@@ -31,6 +31,8 @@ class EmailPasswordActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var entrance: Button
 
+    var sP: String = ""
+
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
     lateinit var storageReference: StorageReference
     private var filePath: Uri? = null
@@ -54,8 +56,10 @@ class EmailPasswordActivity : AppCompatActivity() {
 //        }
         if (requestCode === PICK_IMAGE_REQUEST && resultCode === RESULT_OK && attr.data != null) {
             filePath = data?.data
+            Log.d("QQQQQ",filePath.toString())
             try {
                 val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
+                Log.d("QQQQQ",bitmap.toString())
                 avatar.setImageBitmap(bitmap)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -103,14 +107,30 @@ class EmailPasswordActivity : AppCompatActivity() {
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
     }
-    private fun uploadImage() {
+    fun uploadImage() {
         if (filePath != null) {
             val progressDialog = ProgressDialog(this)
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
             val ref = storageReference.child("images/" + FirebaseAuth.getInstance().currentUser!!.email.toString())
-            ref.putFile(filePath!!)
-                .addOnSuccessListener {
+            val urlTask = ref.putFile(filePath!!).continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                ref.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    sP = downloadUri.toString().replace(downloadUri.toString().substringAfterLast("token="),"<UNGUESSABLE_UUID>")
+                    getterANDSetter.setImage(sP)
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+            ref.putFile(filePath!!).addOnSuccessListener {
                     progressDialog.dismiss()
                     //makeText(this@EmailPasswordActivity, "Uploaded", Toast.LENGTH_SHORT).show()
                 }
@@ -127,13 +147,6 @@ class EmailPasswordActivity : AppCompatActivity() {
                 })
         }
     }
-
-//    private fun openGalleryForImage() {
-//        val intent = Intent(Intent.ACTION_PICK)
-//        intent.type = "image/*"
-//        startActivityForResult(intent, REQUEST_CODE)
-//        //bitmap = (avatar.drawable as BitmapDrawable).bitmap //error
-//    }
     fun signin(email: String, password: String) {
         if (!email.contains("@") && !email.contains("."))makeText(applicationContext, "Неправильная почта", Toast.LENGTH_LONG).show()
         else{

@@ -6,20 +6,23 @@
     android:orientation="vertical"
     tools:context=".FirstFragment">
 
-    <!-- FrameLayout -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/change_avatar"
         android:text="@string/load"
         android:layout_gravity="right"/>
-
-    <ImageView
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/avatar_in_settings"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_baseline_account_box_24"/>
+        android:layout_gravity="center">
+        <ImageView
+            android:layout_width="144dp"
+            android:layout_height="144dp"
+            android:id="@+id/avatar_in_settings"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_account_box_24"/>
+    </FrameLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

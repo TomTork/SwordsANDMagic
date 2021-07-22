@@ -54,8 +54,10 @@ class SecondFragment : Fragment(), View.OnClickListener {
         money = v.findViewById(R.id.money)
         nickname_in_start = v.findViewById(R.id.nickname_in_start)
         start.setOnClickListener(this)
-        money.text = getterANDSetter.getMoney().toString()
-        nickname_in_start.text = getterANDSetter.getName()
+//        money.text = getterANDSetter.getMoney().toString()
+//        nickname_in_start.text = getterANDSetter.getName()
+        money.text = "0.0"
+        nickname_in_start.text = "any"
         money_timer()
         return v
     }
@@ -89,6 +91,7 @@ class SecondFragment : Fragment(), View.OnClickListener {
                 override fun onTick(millisUntilFinished: Long) {
                     second--
                     nickname_in_start.text = getterANDSetter.getName()
+                    money.text = getterANDSetter.getMoney().toString()
                 }
 
                 override fun onFinish() {

@@ -1,14 +1,18 @@
 package com.anotherworld.swordsandmagic
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import kotlinx.android.synthetic.main.fragment_first.*
+import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +32,12 @@ class FirstFragment : Fragment(), View.OnClickListener {
     lateinit var change: Button
     lateinit var accept: Button
     lateinit var input_nickname: EditText
+    lateinit var avatar_in_settings: ImageView
+    val getterANDSetter: GetterANDSetter = GetterANDSetter()
+    var sec: Int = 1
+    private val PICK_IMAGE_REQUEST = 71
+    var sP: String = ""
+    var count:CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +45,22 @@ class FirstFragment : Fragment(), View.OnClickListener {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +70,34 @@ class FirstFragment : Fragment(), View.OnClickListener {
         change = v.findViewById(R.id.change_avatar)
         accept = v.findViewById(R.id.accept)
         input_nickname = v.findViewById(R.id.input_nickname)
+        avatar_in_settings = v.findViewById(R.id.avatar_in_settings)
         change.setOnClickListener(this)
         accept.setOnClickListener(this)
+        if (getterANDSetter.getSign()==1) {
+                //Glide.with(this).load(getterANDSetter.getImage()).into(avatar_in_settings)
+            Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+        }
+
+//        count = object : CountDownTimer((sec * 1000).toLong(), 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                sec--
+//                if (getterANDSetter.getSign()==1) {
+//                    //Glide.with(this).load(getterANDSetter.getImage()).into(avatar_in_settings)
+//                    Picasso.get().load(getterANDSetter.getImage()).placeholder(R.drawable.ic_baseline_account_box_24).error(R.drawable.ic_baseline_account_box_24).into(avatar_in_settings);
+//                }
+//            }
+//
+//            override fun onFinish() {
+//                if (count != null) {
+//                    sec = 1
+//                    count!!.start()
+//                }
+//            }
+//        }
+//        if (count != null) {
+//            sec = 1
+//            count!!.start()
+//        }
         return v;
     }
 
@@ -74,9 +123,15 @@ class FirstFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.change_avatar -> Log.d("QQQQQ","REALLY")
-            R.id.accept -> Log.d("QQQQQ","TRUE_11")
+            R.id.change_avatar -> {
+                getterANDSetter.setGallery(1)
+            }
+            R.id.accept -> {
+                if (input_nickname.text.toString().isNotEmpty() && !input_nickname.text.toString().contains(";") && !input_nickname.text.toString().contains(" ")){
+                    getterANDSetter.setName(input_nickname.text.toString())
+                    input_nickname.text = null
+                }
+            }
         }
-
     }
 }
