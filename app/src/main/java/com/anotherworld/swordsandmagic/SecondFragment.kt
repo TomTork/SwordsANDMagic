@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +33,7 @@ class SecondFragment : Fragment(), View.OnClickListener {
     lateinit var state: TextView
     lateinit var money: TextView
     lateinit var nickname_in_start: TextView
+    var s: String = ""
     var second: Int = 60
     var countD: CountDownTimer? = null
     val getterANDSetter: GetterANDSetter = GetterANDSetter()
@@ -83,6 +86,12 @@ class SecondFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        state.text = "Поиск игры..."
+        FirebaseDatabase.getInstance().reference.child("FindGame").get().addOnSuccessListener {
+            s = it.value.toString()
+        }.addOnFailureListener{
+        }
+        FirebaseDatabase.getInstance().getReference("FindGame").push().setValue(s +";" + getterANDSetter.getName())
         getterANDSetter.setTemp(1)
     }
     fun money_timer(){

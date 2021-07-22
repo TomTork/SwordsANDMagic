@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/state"
-            android:text="@string/state"
+            android:text="@string/space"
             android:layout_gravity="center"
             android:gravity="center"
             android:textStyle="bold"
